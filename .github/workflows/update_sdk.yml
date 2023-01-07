@@ -1,12 +1,14 @@
 name: Update SDK
 
 on:
+  schedule:
+    - cron: "0 0 * * *"
   workflow_dispatch:
 
 jobs:
   update_sdk:
     name: Update SDK
-    runs-on: ubuntu-latest
+    runs-on: macos-12
     steps:
       - name: Checkout
         uses: actions/checkout@v3
