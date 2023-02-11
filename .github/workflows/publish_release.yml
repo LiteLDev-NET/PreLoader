@@ -75,6 +75,7 @@ jobs:
           mkdir output/RELEASE/
           mkdir output/RELEASE/LiteLoader
           cp -f x64/Release/LLNETPreLoader.dll output/RELEASE/LiteLoader/LLNETPreLoader.dll
+          cp -f lib/nethost.dll output/RELEASE/lib/nethost.dll
           mkdir output/PDB/
           cp -f x64/Release/*.pdb output/PDB/
           # mkdir output/${{env.PLUGIN_NAME}}/${{env.PLUGIN_NAME}}/
