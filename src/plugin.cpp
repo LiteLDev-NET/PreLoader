@@ -10,7 +10,7 @@
 #include <Utils/StringHelper.h>
 #include "config.hpp"
 
-//#define NETHOST_USE_AS_STATIC
+ //#define NETHOST_USE_AS_STATIC
 #include "nethost.hpp"
 
 // We recommend using the global logger.
@@ -68,25 +68,6 @@ enum StatusCode
 void error_writer(const char_t* message)
 {
     logger.warn("hostfxr: {}", TextEncoding::fromUnicode(std::wstring(message)));
-}
-
-std::vector<std::filesystem::path> GetAllAssemblies()
-{
-
-    std::filesystem::directory_iterator files(LLNET_PLUGINS_LOAD_DIR);
-
-    std::vector<std::filesystem::path> assemblies;
-    for (auto& file : files)
-    {
-        auto& filePath = file.path();
-        if (filePath.extension() == ".dll")
-        {
-            if (filePath.filename() == LLNET_LOADER_NAME_WITH_EXTENSION)
-                continue;
-            assemblies.emplace_back(filePath);
-        }
-    }
-    return assemblies;
 }
 
 /**
@@ -190,7 +171,7 @@ void PluginInit()
 
 
 
-    void(*initAndLoadPlugins_fptr)(Logger*, std::vector<std::filesystem::path>*) = nullptr;
+    void(*initAndLoadPlugins_fptr)(char_t const*) = nullptr;
 
     rc = (StatusCode)load_assembly_and_get_function_pointer(
         std::filesystem::path(LLNET_LOADER_PATH).c_str(),
@@ -209,8 +190,5 @@ void PluginInit()
         throw std::exception();
     }
 
-
-    auto assemblies = GetAllAssemblies();
-
-    initAndLoadPlugins_fptr(&logger, &assemblies);
+    initAndLoadPlugins_fptr(get_hostfxr_params.dotnet_root == nullptr ? L"" : get_hostfxr_params.dotnet_root);
 }

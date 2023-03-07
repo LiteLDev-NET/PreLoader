@@ -18,7 +18,7 @@
 // The basic descriptions of your plugin
 // Note that the the plugin name CAN ONLY CONTAIN Enlish alphabet, digit, dash(-) and
 // underscore(_).
-#define PLUGIN_NAME "LLNETPreLoader"
+#define PLUGIN_NAME "LL.NET.PreLoader"
 // Describe what your plugin does
 // We recommend you start the introduction with a third-person singular verb.
 #define PLUGIN_INTRODUCTION "PreLoader of LiteLoader.NET"

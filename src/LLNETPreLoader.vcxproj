@@ -12,6 +12,7 @@
     <ProjectGuid>{B0D8F649-53E6-4512-A9D8-33C0E549FD65}</ProjectGuid>
     <RootNamespace>LLNETPreLoader</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+    <ProjectName>LiteLoader.NET.PreLoader</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
@@ -62,19 +63,7 @@
       <LinkTimeCodeGeneration>Default</LinkTimeCodeGeneration>
     </Link>
     <PreBuildEvent>
-      <Command>if not exist "$(SolutionDir)SDK\lib\bedrock_server_api.lib" goto process
-if not exist "$(SolutionDir)SDK\lib\bedrock_server_var.lib" goto process
-goto end
-
-:process
-cd /d "$(SolutionDir)\SDK\tools\"
-if exist "$(LocalDebuggerWorkingDirectory)\bedrock_server.pdb" (
-LibraryBuilder.exe -o ..\lib\ "$(LocalDebuggerWorkingDirectory)"
-) else (
-LibraryBuilder.exe -o ..\lib\
-)
-
-:end
+      <Command>
       </Command>
     </PreBuildEvent>
   </ItemDefinitionGroup>
